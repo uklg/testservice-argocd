@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: acd.saturdaynightdj.com
+spec:
+  tls:
+    - hosts:
+        - acd.saturdaynightdj.com
+      secretName: example-com-tls
+  rules:
+    - host: acd.saturdaynightdj.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /foo
+            backend:
+              service:
+                name: guestbook-ui
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: /bar
+            backend:
+              service:
+                name: guestbook-ui
+                port:
+                  number: 80
+
+
